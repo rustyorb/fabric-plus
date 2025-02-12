@@ -1,0 +1,57 @@
+# Environment files
+ENV
+.env
+.env.*
+*.env
+env/
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Node
+node_modules/
+.svelte-kit/
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project specific
+fabric/myfiles/Fabric_obsidian/*
+!fabric/myfiles/Fabric_obsidian/.gitkeep
+
+# Keep pattern descriptions
+!fabric/myfiles/pattern_descriptions.json
+!fabric/myfiles/pattern_extracts.json
