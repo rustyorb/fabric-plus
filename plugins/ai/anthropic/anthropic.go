@@ -28,7 +28,6 @@ func NewClient() (ret *Client) {
 	ret.ApiBaseURL.Value = defaultBaseUrl
 	ret.ApiKey = ret.PluginBase.AddSetupQuestion("API key", true)
 
-	// we could provide a setup question for the following settings
 	ret.maxTokens = 4096
 	ret.defaultRequiredUserMessage = "Hi"
 	ret.models = []string{
@@ -59,7 +58,6 @@ func (an *Client) configure() (err error) {
 	if an.ApiBaseURL.Value != "" {
 		baseURL := an.ApiBaseURL.Value
 
-		// If the base URL contains a UUID, ensure it ends with /v1
 		if strings.Contains(baseURL, "-") && !strings.HasSuffix(baseURL, "/v1") {
 			if strings.HasSuffix(baseURL, "/") {
 				baseURL = strings.TrimSuffix(baseURL, "/")
@@ -84,7 +82,6 @@ func (an *Client) ListModels() (ret []string, err error) {
 func (an *Client) SendStream(
 	msgs []*goopenai.ChatCompletionMessage, opts *common.ChatOptions, channel chan string,
 ) (err error) {
-
 	messages := an.toMessages(msgs)
 
 	ctx := context.Background()
@@ -132,10 +129,8 @@ func (an *Client) Send(ctx context.Context, msgs []*goopenai.ChatCompletionMessa
 }
 
 func (an *Client) toMessages(msgs []*goopenai.ChatCompletionMessage) (ret []anthropic.MessageParam) {
-	// we could call the method before calling the specific vendor
 	normalizedMessages := common.NormalizeMessages(msgs, an.defaultRequiredUserMessage)
 
-	// Iterate over the incoming session messages and process them
 	for _, msg := range normalizedMessages {
 		var message anthropic.MessageParam
 		switch msg.Role {
